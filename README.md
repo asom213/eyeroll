@@ -15,8 +15,15 @@ Prototype computer vision script that listens for an eye-roll gesture and scroll
 > Requires Python 3.10+, a webcam, and a GUI session (PyAutoGUI cannot scroll in headless environments).
 
 1. Install dependencies: `python -m pip install -r requirements.txt`
-2. Run the detector: `python -m src.eye_roll_scroll`
-3. Roll your eyes upward to trigger automatic upward scrolls.
+2. Launch the detector: `python -m src.eye_roll_scroll`
+3. You should see a webcam preview titled **Eye Roll Scroll** with an overlay text like `Eye-roll score: 0.00`.
+4. Roll your eyes upward; once the score stays above the threshold for a few frames, the active window should scroll up.
+5. Press <kbd>Esc</kbd> to exit.
+
+### Quick testing tips
+- Run from a well-lit room so Face Mesh can find your eyes quickly.
+- If nothing happens, ensure the terminal is focused on a scrollable page (e.g., browser tab or document) so PyAutoGUI can send scroll events.
+- To confirm gesture detection without scrolling, temporarily change the `on_trigger` callback in `EyeRollDetector.run_camera` (e.g., `lambda: print("triggered")`) and watch the console output instead of page movement.
 
 ### Tuning
 Edit the `EyeRollConfig` values in `src/eye_roll_scroll.py` if you need more/less sensitivity:
